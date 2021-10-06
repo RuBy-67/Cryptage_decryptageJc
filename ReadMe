@@ -1,0 +1,20 @@
+Petit Projet de préparation école d'info,en C#
+
+Cryptage et Décryptage d'un texte donné par l'utilisateurs par la méthode dite de "jule césar" par le décalage des lettre de l'alphabet
+
+chaine à cryter : "jaimemangerdespommes"
+après un décalage de 2 :
+chaine cryptée : "lckogocpigtfgurqoogu" 
+
+puis le decrypter
+
+Utilisation : 
+dans le terminale (C# oblige) taper: 
+
+mcs [nom du fichiers].cs /// sans les crochets
+mono [nom du fichiers].exe 
+
+nb: veillez a être dans le bon dossiers ou naviguers vers votre dossiers a l'aide de la commande cd
+
+cd votre dossier
+
