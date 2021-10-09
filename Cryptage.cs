@@ -10,6 +10,7 @@ class cryptage
         int entre_User;
         string phrase;
         int decallage;
+        string newtext;
 
         Console.WriteLine("Bienvenue dans l'outils de Cryptage et de Decryptage de Jules César !\n Quels outils voulez vous utilisez ?\n- Cryptage ? Taper 1\n- Decryptage ? Taper 2");
 
@@ -19,14 +20,16 @@ class cryptage
         {
             Console.WriteLine("Entrer votre chaine de caractère à crypter");
             phrase = Console.ReadLine();
+            newtext = harmonisation(phrase);
+            
+
             Console.WriteLine("quel décalage voulez-vous ?");
             decallage = int.Parse(Console.ReadLine());
 
-            prog_Cryptage = progCryptage(phrase, decallage);
 
-            Console.WriteLine(prog_Cryptage);
+            prog_Cryptage = progCryptage(newtext, decallage);
 
-            
+             Console.WriteLine(prog_Cryptage);
         }
 
 
@@ -46,39 +49,72 @@ class cryptage
 
     }
 
-    public static string progCryptage(string texte, int decallage){
 
-        char[] chars = texte.ToCharArray();
-        for (int i = 0; i < texte.Length; i++){
-            if ('a' <= chars[i]&&chars[i]<='z'){
-                chars [i]=(char)(int)(((chars [i]-'a')+ decallage)+'a');
-                if (chars [i] >'z')
-                    chars[i]=(char)(int)((chars[i]-'z') + 'a'-1);
 
+    public static string harmonisation(string texte)
+    {
+
+        string chaine = "";
+        int boucle;
+
+        boucle = texte.Length;
+
+        for (int i = 0; i < boucle; i++)
+        {
+
+            if (((int)texte[i] >= (int)'A' && (int)texte[i] <= (int)'Z') || ((int)texte[i] >= (int)'a' && (int)texte[i] <= (int)'z'))
+            {
+                if ((int)texte[i] >= (int)'a' && (int)texte[i] <= (int)'z')
+                {
+
+                    chaine = chaine + texte[i];
                 }
-                else{
-                    if ('A' <= chars[i]&&chars[i]<='Z'){
-                        chars [i] =(char)(int)(((chars [i]-'A')+ decallage)+'A');
-                        if (chars [i]>'Z')
-                            chars[i]=(char)(int)((chars[i]-'Z')+ 'A' - 1);
-                        }
-                        else if ('0'<= chars[i]&&chars[i]<='9'){
-                            chars [i] = (char)(int)(((chars[i]-'0')+ decallage)+ '0');
-                            if (chars[i]>'9')
-                                chars [i] =(char)(int)((chars[i]-'9')+ '0' - 1);
-                            }
 
-                        }
-        } 
-        return new String(chars);
-        
-        
+                else
+                {
+
+                    chaine = chaine + (char)((int)(texte[i]) + ((int)'a' - (int)'A'));
+                }
+
+            }
+        }
+        return chaine;
+
 
     }
-/*     public static string progDecryptage(string texte, int decallage){
-    
-    return new String(chars);
-        
-        
-    }*/
+
+    public static string progCryptage(string texte, int decallage)
+    {
+
+        char[] chars = texte.ToCharArray();
+        for (int i = 0; i < texte.Length; i++)
+        {
+            if ('a' <= chars[i] && chars[i] <= 'z')
+            {
+                chars[i] = (char)(int)(((chars[i] - 'a') + decallage) + 'a');
+                if (chars[i] > 'z')
+                    chars[i] = (char)(int)((chars[i] - 'z') + 'a' - 1);
+
+            }
+
+            else if ('0' <= chars[i] && chars[i] <= '9')
+            {
+                chars[i] = (char)(int)(((chars[i] - '0') + decallage) + '0');
+                if (chars[i] > '9')
+                    chars[i] = (char)(int)((chars[i] - '9') + '0' - 1);
+
+
+            }
+        }
+        return new String(chars);
+
+
+
+    }
+    /* public static string progDecryptage(string texte, int decallage){
+
+     return new String(chars);
+
+
+     }*/
 }
